@@ -8,11 +8,7 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.util.*;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@EqualsAndHashCode(of = "id")
+@Data
 @Document(collection = "posts")
 public class Post implements Serializable {
     @Serial

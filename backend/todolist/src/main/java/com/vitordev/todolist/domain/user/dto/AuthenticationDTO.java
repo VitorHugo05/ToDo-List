@@ -1,13 +1,8 @@
 package com.vitordev.todolist.domain.user.dto;
 
-import lombok.*;
-
-
 public class AuthenticationDTO {
     private String email;
     private String password;
-
-    public AuthenticationDTO() {}
 
     public AuthenticationDTO(String email, String password) {
         this.email = email;

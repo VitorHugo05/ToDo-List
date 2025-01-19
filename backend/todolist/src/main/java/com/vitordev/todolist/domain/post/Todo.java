@@ -9,11 +9,7 @@ import org.springframework.data.annotation.Id;
 import java.io.Serial;
 import java.io.Serializable;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@EqualsAndHashCode(of = "id")
+@Data
 public class Todo implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;

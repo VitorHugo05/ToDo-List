@@ -13,9 +13,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 
-@Getter
-@Setter
-@EqualsAndHashCode(of = "id")
+@RequiredArgsConstructor
 @Document(collection = "users")
 public class User implements Serializable, UserDetails {
     @Serial
@@ -29,18 +27,44 @@ public class User implements Serializable, UserDetails {
     private String password;
     private UserRole role;
 
-    /*
-    Por algum motivo o Lombok não funciona nesta classe
-    */
-
-    public User() {}
-
     public User(String id, String email, String username, String password, UserRole role) {
-        this.id = id;
-        this.email = email;
-        this.username = username;
+        this.role = role;
         this.password = password;
-        this.role = UserRole.USER;
+        this.email = email;
+        this.id = id;
+        this.username = username;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public UserRole getRole() {
+        return role;
+    }
+
+    public void setRole(UserRole role) {
+        this.role = role;
     }
 
     @Override

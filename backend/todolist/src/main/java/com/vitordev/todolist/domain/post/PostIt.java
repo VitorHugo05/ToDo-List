@@ -1,5 +1,6 @@
 package com.vitordev.todolist.domain.post;
 
+import lombok.Data;
 import org.springframework.data.annotation.Id;
 
 import java.io.Serial;
