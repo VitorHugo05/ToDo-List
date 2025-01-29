@@ -3,13 +3,11 @@ package com.vitordev.todolist.services;
 import com.vitordev.todolist.domain.post.Post;
 import com.vitordev.todolist.domain.user.User;
 import com.vitordev.todolist.repositories.UserRepository;
-import com.vitordev.todolist.services.exception.ObjectNotFound;
+import com.vitordev.todolist.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -26,11 +24,11 @@ public class UserService {
     }
 
     public List<Post> findAllPostsById(String userId) {
-        User user = userRepository.findById(userId).orElseThrow(() -> new ObjectNotFound("User not found"));
+        User user = userRepository.findById(userId).orElseThrow(() -> new ObjectNotFoundException("User not found"));
         return user.getPosts();
     }
 
     public User findById(String userId) {
-        return userRepository.findById(userId).orElseThrow(() -> new ObjectNotFound("User not found"));
+        return userRepository.findById(userId).orElseThrow(() -> new ObjectNotFoundException("User not found"));
     }
 }
