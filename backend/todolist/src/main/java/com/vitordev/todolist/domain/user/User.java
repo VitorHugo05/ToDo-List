@@ -1,7 +1,7 @@
 package com.vitordev.todolist.domain.user;
 
+import com.vitordev.todolist.domain.post.Post;
 import com.vitordev.todolist.domain.user.enums.UserRole;
-import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
@@ -10,10 +10,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-@RequiredArgsConstructor
 @Document(collection = "users")
 public class User implements Serializable, UserDetails {
     @Serial
@@ -27,44 +27,33 @@ public class User implements Serializable, UserDetails {
     private String password;
     private UserRole role;
 
-    public User(String id, String email, String username, String password, UserRole role) {
-        this.role = role;
+    private List<Post> posts = new ArrayList<>();
+
+    public User(String id, String email, String username, String password) {
+        this.role = UserRole.USER;
         this.password = password;
         this.email = email;
         this.id = id;
         this.username = username;
+    }
+
+    public User() {
     }
 
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getEmail() {
         return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public UserRole getRole() {
         return role;
     }
 
-    public void setRole(UserRole role) {
-        this.role = role;
+    public List<Post> getPosts() {
+        return posts;
     }
 
     @Override
@@ -101,5 +90,17 @@ public class User implements Serializable, UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", role=" + role +
+                ", posts=" + posts +
+                '}';
     }
 }
